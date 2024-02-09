@@ -1,7 +1,7 @@
 package base;
 
+import data.DataModel;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -14,7 +14,6 @@ import java.io.FileNotFoundException;
 public class BaseTests {
 
     protected WebDriver driver ;
-    protected ReadDataFromJson readDataFromJson;
     protected HomePage homePage;
 
     @BeforeClass
@@ -26,12 +25,15 @@ public class BaseTests {
     }
     @BeforeMethod
     public void goHome() throws FileNotFoundException {
-        readDataFromJson = new ReadDataFromJson();
-        driver.get(readDataFromJson.readJsonFile().URL);
+        driver.get(dataModel().URL);
     }
 
     @AfterClass
     public void tearDown(){
         driver.quit();
+    }
+    protected DataModel dataModel() throws FileNotFoundException {
+        ReadDataFromJson readDataFromJson = new ReadDataFromJson();
+        return readDataFromJson.readJsonFile();
     }
 }

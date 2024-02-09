@@ -15,5 +15,11 @@
         "Password" : "789"
       }
     }
-  }
+  },
+  "Login1": [
+    ["omar@gmail.com","123"],
+    ["mohamed@gmail.com","456"],
+    ["Asmaa@gmail.com","789"]
+  ],
+  "ValidationMessage": "Login was unsuccessful. Please correct the errors and try again."
 }

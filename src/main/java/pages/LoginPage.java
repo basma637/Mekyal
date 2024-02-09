@@ -14,6 +14,7 @@ public class LoginPage extends MethodHandles {
     private final By passwordField = By.id("Password");
 
     private final By loginButton = By.cssSelector(".button-1.login-button");
+    private final By validationMessage = By.cssSelector(".message-error.validation-summary-errors");
 
     public void insertEmail(String username){
         sendKeys(emailFiled,username);
@@ -23,5 +24,8 @@ public class LoginPage extends MethodHandles {
     }
     public void clickOnLoginButton(){
         click(loginButton);
+    }
+    public String getValidationMessage(){
+        return getText(validationMessage);
     }
 }
