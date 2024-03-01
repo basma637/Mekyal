@@ -14,4 +14,11 @@ public class LoginTests extends BaseTests {
         loginPage.insertPassword(dataModel().Login.ValidCredentials.Password);
         loginPage.clickOnLoginButton();
     }
+    @Test
+    public void testSuccessfulLogin2() throws FileNotFoundException {
+        LoginPage loginPage = homePage.clickOnLoginLink();
+        loginPage.insertEmail(dataModel().Login.ValidCredentials.Username);
+        loginPage.insertPassword(dataModel().Login.ValidCredentials.Password);
+        loginPage.clickOnLoginButton();
+    }
 }
