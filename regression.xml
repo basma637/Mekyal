@@ -2,10 +2,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Regression" >
     <test verbose="2" name="Regression with Chrome" >
-        <parameter name="browser" value="headlessChrome"></parameter>
+        <parameter name="browser" value="Chrome"></parameter>
         <classes>
-            <class name="login.LoginTests"/>
-            <class name="login.LoginTests1"/>
+            <class name="products.AddItemsTests"/>
+
         </classes>
     </test>
 <!--    <test verbose="2" name="Regression with Firefox" parallel="classes" thread-count="2">-->
