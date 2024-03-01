@@ -6,14 +6,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import pages.HomePage;
 import reader.ReadDataFromJson;
+import utils.ScreenRecorderUtil;
+import utils.UtilsTests;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.lang.reflect.Method;
 
 public class BaseTests {
 
@@ -22,6 +23,7 @@ public class BaseTests {
 
     ChromeOptions chromeOptions;
     FirefoxOptions firefoxOptions;
+    UtilsTests utilsTests;
 
     @Parameters("browser")
     @BeforeClass
@@ -32,8 +34,15 @@ public class BaseTests {
     }
 
     @BeforeMethod
-    public void goHome() throws FileNotFoundException {
+    public void goHome(Method method) throws Exception {
+        ScreenRecorderUtil.startRecord(method.getName());
         driver.get(dataModel().URL);
+    }
+    @AfterMethod
+    public void afterMethod(Method method) throws Exception {
+        utilsTests = new UtilsTests(driver);
+        utilsTests.takeScreenShot(method);
+        ScreenRecorderUtil.stopRecord();
     }
 
     @AfterClass
