@@ -30,29 +30,30 @@ public class UtilsTests {
         FileUtils.copyFile(file, new File("report/" + method.getName() + ".png"));
     }
 
-    public void createReport(){
+    public void createReport() {
         extent = new ExtentReports();
         ExtentSparkReporter spark = new ExtentSparkReporter("report/report.html");
         spark.config().setTheme(Theme.DARK);
         spark.config().setDocumentTitle("My Report");
         extent.attachReporter(spark);
     }
+
     public void setStatus(Method method, ITestResult result) {
         test = extent.createTest(method.getName());
-        if (result.getStatus()==ITestResult.SUCCESS){
+        if (result.getStatus() == ITestResult.SUCCESS) {
             test.pass("Test Pass");
-        } else if (result.getStatus()==ITestResult.FAILURE) {
+        } else if (result.getStatus() == ITestResult.FAILURE) {
             test.fail("Test Fail");
-        }else{
+        } else {
             test.skip("Test Skipped");
         }
-        test.addScreenCaptureFromPath(method.getName()+".png");
+        test.addScreenCaptureFromPath(method.getName() + ".png");
 
-        test.log(Status.INFO,"<a href='"+method.getName()+".avi'>Download Video</a>");
+        test.log(Status.INFO, "<a href='" + method.getName() + ".avi'>Download Video</a>");
 
     }
 
-    public void flushReport(){
+    public void flushReport() {
         extent.flush();
     }
 

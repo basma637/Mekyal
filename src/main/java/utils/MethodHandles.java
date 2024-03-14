@@ -19,14 +19,16 @@ public class MethodHandles {
 
     private final By loader = By.cssSelector("ajax-loading-block-window");
     private final By barNotification = By.id("bar-notification");
-    public MethodHandles(WebDriver driver){
+
+    public MethodHandles(WebDriver driver) {
         this.driver = driver;
     }
-    private WebElement webElement(By locator){
+
+    private WebElement webElement(By locator) {
         return driver.findElement(locator);
     }
 
-    private void explicitWait(By locator,int time){
+    private void explicitWait(By locator, int time) {
         wait = new WebDriverWait(driver, Duration.ofSeconds(time));
         wait.until(ExpectedConditions.and(
                 ExpectedConditions.visibilityOf(webElement(locator)),
@@ -34,51 +36,58 @@ public class MethodHandles {
                 ExpectedConditions.elementToBeClickable(locator),
                 ExpectedConditions.visibilityOfElementLocated(locator)));
     }
-    private void invisibilityOf(By locator,int time){
+
+    private void invisibilityOf(By locator, int time) {
         wait = new WebDriverWait(driver, Duration.ofSeconds(time));
         wait.until(ExpectedConditions.and(
                 ExpectedConditions.invisibilityOf(webElement(locator)),
                 ExpectedConditions.invisibilityOfElementLocated(locator)));
     }
+
     private void scrollIntoView(WebDriver driver, WebElement element) {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         jsExecutor.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-    protected void click(By locator){
+    protected void click(By locator) {
 //        invisibilityOf(loader,20);
-        explicitWait(locator,20);
+        explicitWait(locator, 20);
 //        scrollIntoView(driver,webElement(locator));
         webElement(locator).click();
     }
-    protected void sendKeys(By locator, String text){
+
+    protected void sendKeys(By locator, String text) {
 //        invisibilityOf(loader,20);
-        explicitWait(locator,20);
+        explicitWait(locator, 20);
 //        scrollIntoView(driver,webElement(locator));
         webElement(locator).sendKeys(text);
     }
-    protected String getText(By locator){
-        explicitWait(locator,20);
+
+    protected String getText(By locator) {
+        explicitWait(locator, 20);
 //        scrollIntoView(driver,webElement(locator));
         return webElement(locator).getText();
     }
-    protected void hoverOverElement(By locator){
+
+    protected void hoverOverElement(By locator) {
         actions = new Actions(driver);
-        explicitWait(locator,10);
+        explicitWait(locator, 10);
         actions.moveToElement(webElement(locator)).build().perform();
     }
-    protected void clickWithActions(By locator){
-        explicitWait(locator,10);
+
+    protected void clickWithActions(By locator) {
+        explicitWait(locator, 10);
         actions = new Actions(driver);
         actions.click(webElement(locator)).click().build().perform();
     }
-    protected boolean isDisplayed(By locator){
-        explicitWait(locator,10);
+
+    protected boolean isDisplayed(By locator) {
+        explicitWait(locator, 10);
 //        scrollIntoView(driver,webElement(locator));
         return webElement(locator).isDisplayed();
     }
 
-    public boolean barNotificationIsDisplayed(){
+    public boolean barNotificationIsDisplayed() {
         return isDisplayed(barNotification);
     }
 }
