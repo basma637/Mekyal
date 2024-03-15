@@ -126,7 +126,7 @@ public class MethodHandles {
 
                 setSteps();
                 addBorderToElement(driver, webElement(locator));
-                actions.click(webElement(locator)).click().build().perform();
+                actions.click(webElement(locator)).build().perform();
                 break;
             }catch (StaleElementReferenceException e){
 
