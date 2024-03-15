@@ -58,48 +58,109 @@ public class MethodHandles {
     }
 
     protected void click(By locator) {
-        invisibilityOf(loader, 20);
-        explicitWait(locator, 20);
-        setSteps();
-        addBorderToElement(driver, webElement(locator));
-        webElement(locator).click();
+        for (int i = 0;i<5;i++){
+            try {
+                invisibilityOf(loader, 20);
+                explicitWait(locator, 20);
+                setSteps();
+                addBorderToElement(driver, webElement(locator));
+                webElement(locator).click();
+                break;
+            }catch (StaleElementReferenceException | ElementClickInterceptedException e){
+
+            }
+        }
     }
 
     protected void sendKeys(By locator, String text) {
-        explicitWait(locator, 20);
-        setSteps();
-        addBorderToElement(driver, webElement(locator));
-        webElement(locator).sendKeys(text);
+        for (int i =0;i<5;i++){
+            try {
+                explicitWait(locator, 20);
+                setSteps();
+                addBorderToElement(driver, webElement(locator));
+                webElement(locator).sendKeys(text);
+                break;
+            }catch (StaleElementReferenceException e){
+
+            }
+        }
     }
 
     protected String getText(By locator) {
-        explicitWait(locator, 20);
-        setSteps();
-        addBorderToElement(driver, webElement(locator));
-        return webElement(locator).getText();
+        String text = null;
+        for (int i =0;i<5;i++){
+            try {
+                explicitWait(locator, 20);
+                setSteps();
+                addBorderToElement(driver, webElement(locator));
+                text= webElement(locator).getText();
+                break;
+            }catch (StaleElementReferenceException e){
+
+            }
+        }
+        return text;
     }
 
     protected void hoverOverElement(By locator) {
         actions = new Actions(driver);
-        explicitWait(locator, 10);
-        setSteps();
-        addBorderToElement(driver, webElement(locator));
-        actions.moveToElement(webElement(locator)).build().perform();
+        for (int i = 0;i<5;i++){
+            try {
+                explicitWait(locator, 10);
+                setSteps();
+                addBorderToElement(driver, webElement(locator));
+                actions.moveToElement(webElement(locator)).build().perform();
+                break;
+            }catch (StaleElementReferenceException e){
+
+            }
+        }
     }
 
     protected void clickWithActions(By locator) {
-        invisibilityOf(loader, 20);
-        explicitWait(locator, 10);
         actions = new Actions(driver);
-        setSteps();
-        addBorderToElement(driver, webElement(locator));
-        actions.click(webElement(locator)).click().build().perform();
+        for (int i=0;i<5;i++){
+            try {
+                invisibilityOf(loader, 20);
+                explicitWait(locator, 10);
+
+                setSteps();
+                addBorderToElement(driver, webElement(locator));
+                actions.click(webElement(locator)).click().build().perform();
+                break;
+            }catch (StaleElementReferenceException e){
+
+            }
+        }
     }
 
     protected boolean isDisplayed(By locator) {
-        explicitWait(locator, 10);
-        addBorderToElement(driver, webElement(locator));
-        return webElement(locator).isDisplayed();
+        boolean flag = false;
+        for (int i =0;i<5;i++){
+            try {
+                explicitWait(locator, 10);
+                addBorderToElement(driver, webElement(locator));
+                flag =  webElement(locator).isDisplayed();
+                break;
+            }catch (StaleElementReferenceException e){
+
+            }
+        }
+        return flag;
+    }
+    protected void doubleClick(By locator){
+        actions = new Actions(driver);
+        for (int i=0;i<5;i++){
+            try {
+                invisibilityOf(locator,10);
+                explicitWait(locator,10);
+                addBorderToElement(driver,webElement(locator));
+                actions.doubleClick().build().perform();
+                break;
+            }catch (StaleElementReferenceException e){
+
+            }
+        }
     }
 
     public boolean barNotificationIsDisplayed() {
