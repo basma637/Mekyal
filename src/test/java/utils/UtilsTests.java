@@ -15,11 +15,12 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
+import static utils.MethodHandles.extent;
+import static utils.MethodHandles.test;
+
 public class UtilsTests {
     WebDriver driver;
-    protected static ExtentReports extent;
 
-    protected static ExtentTest test;
 
     public UtilsTests(WebDriver driver) {
         this.driver = driver;
@@ -38,8 +39,12 @@ public class UtilsTests {
         extent.attachReporter(spark);
     }
 
-    public void setStatus(Method method, ITestResult result) {
+    public void createTestCaseInReport(Method method) {
         test = extent.createTest(method.getName());
+        test.info("--------------- Steps To Reproduce ---------------");
+    }
+
+    public void setStatus(Method method, ITestResult result) {
         if (result.getStatus() == ITestResult.SUCCESS) {
             test.pass("Test Pass");
         } else if (result.getStatus() == ITestResult.FAILURE) {

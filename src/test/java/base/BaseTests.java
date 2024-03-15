@@ -37,14 +37,17 @@ public class BaseTests {
     @BeforeMethod
     public void goHome(Method method) throws Exception {
         ScreenRecorderUtil.startRecord(method.getName());
+        utilsTests = new UtilsTests(driver);
+        utilsTests.createTestCaseInReport(method);
         driver.get(dataModel().URL);
     }
+
     @AfterMethod
     public void afterMethod(Method method, ITestResult result) throws Exception {
         utilsTests = new UtilsTests(driver);
         utilsTests.takeScreenShot(method);
         ScreenRecorderUtil.stopRecord();
-        utilsTests.setStatus(method,result);
+        utilsTests.setStatus(method, result);
     }
 
     @AfterClass
@@ -76,13 +79,13 @@ public class BaseTests {
     }
 
     @BeforeSuite
-    public void beforeSuite(){
+    public void beforeSuite() {
         utilsTests = new UtilsTests(driver);
         utilsTests.createReport();
     }
 
     @AfterSuite
-    public void afterSuite(){
+    public void afterSuite() {
         utilsTests = new UtilsTests(driver);
         utilsTests.flushReport();
     }
