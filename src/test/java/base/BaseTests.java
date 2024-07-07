@@ -26,12 +26,11 @@ public class BaseTests {
     FirefoxOptions firefoxOptions;
     UtilsTests utilsTests;
 
-    @Parameters("browser")
+    @Parameters({"browser"})
     @BeforeClass
     public void setUp(String browser) {
         setUpBrowser(browser);
         homePage = new HomePage(driver);
-
     }
 
     @BeforeMethod
@@ -52,7 +51,7 @@ public class BaseTests {
 
     @AfterClass
     public void tearDown() {
-        driver.quit();
+       // driver.quit();
     }
 
     protected DataModel dataModel() throws FileNotFoundException {

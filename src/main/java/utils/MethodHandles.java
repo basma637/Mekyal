@@ -20,8 +20,8 @@ public class MethodHandles {
     WebDriverWait wait;
     Actions actions;
 
-    private final By loader = By.cssSelector("ajax-loading-block-window");
-    private final By barNotification = By.id("bar-notification");
+    //private final By loader = By.cssSelector("ajax-loading-block-window");
+   // private final By barNotification = By.id("bar-notification");
 
     public MethodHandles(WebDriver driver) {
         this.driver = driver;
@@ -57,11 +57,11 @@ public class MethodHandles {
         jsExecutor.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-    protected void click(By locator) {
+    protected void clickFW(By locator) {
         for (int i = 0;i<5;i++){
             try {
-                invisibilityOf(loader, 20);
-                explicitWait(locator, 20);
+                //invisibilityOf(loader, 20);
+                explicitWait(locator, 40);
                 setSteps();
                 addBorderToElement(driver, webElement(locator));
                 webElement(locator).click();
@@ -121,7 +121,7 @@ public class MethodHandles {
         actions = new Actions(driver);
         for (int i=0;i<5;i++){
             try {
-                invisibilityOf(loader, 20);
+                //invisibilityOf(loader, 20);
                 explicitWait(locator, 10);
 
                 setSteps();
@@ -163,9 +163,7 @@ public class MethodHandles {
         }
     }
 
-    public boolean barNotificationIsDisplayed() {
-        return isDisplayed(barNotification);
-    }
+    //public boolean barNotificationIsDisplayed() {return isDisplayed(barNotification);}
 
     private static String getMethodName() {
         StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();

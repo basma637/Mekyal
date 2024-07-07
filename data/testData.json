@@ -1,17 +1,17 @@
 {
-  "URL" : "https://demo.nopcommerce.com/",
+  "URL" : "https://mekyalwebtest.domnex.com/",
   "Login" : {
     "ValidCredentials" : {
-      "Username" : "omar",
-      "Password" : "123"
+      "Username" : "basma.kasim37@gmail.com",
+      "Password" : "As12345678"
     },
     "InvalidCredentials" : {
       "InvalidUsername": {
-        "Username" : "asmaa",
-        "Password" : "456"
+        "Username" : "basma.kasim37",
+        "Password" : "As12345678"
       },
       "InvalidPassword": {
-        "Username" : "mena",
+        "Username" : "basma.kasim37@gmail.com",
         "Password" : "789"
       }
     }

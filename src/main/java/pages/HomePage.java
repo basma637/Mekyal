@@ -9,28 +9,19 @@ public class HomePage extends MethodHandles {
         super(driver);
     }
 
-    private final By loginLink = By.cssSelector(".ico-login");
+    private final By loginLink = By.className("main-title text-[16px] font-bold");
+            //linkText("Log in");
+    //=By.xpath("//* [contains(@href , '/auth/login')]");
+    //"//a [@class='text-gray hover:text-[var(--main-color)]']");
 
-    private final By computersLink =
-            By.xpath("//ul[@class='top-menu notmobile']//a[contains(text(),'Computers')]");
-
-    private final By desktop =
-            By.xpath("//ul[@class='top-menu notmobile']//a[contains(text(),'Desktops ')]");
+    //private final By registerLink = By.xpath("//a [contains(@href , '/auth/register')]");
+    //By loginLink = By.className("text-gray hover:text-[var(--main-color)]");
+    //By.xpath("//* [contains(@href , '/auth/register')]");
 
     public LoginPage clickOnLoginLink() {
-        click(loginLink);
+        clickFW(loginLink);
         return new LoginPage(driver);
     }
 
-    private void hoverOverComputers(){
-        hoverOverElement(computersLink);
-    }
-    private void clickOnDeskTop(){
-        clickWithActions(desktop);
-    }
-    public DesktopPage selectDesktopProducts(){
-        hoverOverComputers();
-        clickOnDeskTop();
-        return new DesktopPage(driver);
-    }
+    //private void hoverOverComputers(){hoverOverElement();}
 }
